@@ -30,7 +30,6 @@ namespace CivEngage.API.Controllers
             }
             catch (Exception ex)
             {
-
                 return StatusCode(500, $"Error returning representative data: {ex.Message}");
             }
         }
