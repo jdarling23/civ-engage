@@ -9,8 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace CivEngage.API.Controllers
 {
     [Route("api/[controller]")]
-    [ApiController]
-    public class RepresentativeController : ControllerBase
+    public class RepresentativeController : Controller
     {
         private RepresentativeHelper _helper;
 
@@ -19,7 +18,13 @@ namespace CivEngage.API.Controllers
             _helper = helper;
         }
 
-        [HttpGet]
+        [HttpGet, Route("TestGet")]
+        public ActionResult<bool> TestGet()
+        {
+            return Ok("Yeet");
+        }
+
+        [HttpGet, Route("GetReps")]
         public ActionResult<List<Representative>> GetReps(string address)
         {
             try
