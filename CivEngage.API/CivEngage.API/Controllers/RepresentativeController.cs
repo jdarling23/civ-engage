@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using CivEngage.API.Helpers;
 using CivEngage.API.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 
 namespace CivEngage.API.Controllers
 {
@@ -12,10 +13,15 @@ namespace CivEngage.API.Controllers
     public class RepresentativeController : Controller
     {
         private RepresentativeHelper _helper;
+        private IConfiguration _config;
 
-        public RepresentativeController(RepresentativeHelper helper)
+        public RepresentativeController(
+            RepresentativeHelper helper,
+            IConfiguration config
+        )
         {
             _helper = helper;
+            _config = config;
         }
 
         [HttpGet, Route("TestGet")]
@@ -29,7 +35,9 @@ namespace CivEngage.API.Controllers
         {
             try
             {
-                var googleResult = _helper.CallGoogleApi(address);
+                var googleUri = _config["GoogleUri"];
+
+                var googleResult = _helper.CallGoogleApi(address, googleUri);
                 var reps = _helper.ProcessGoogleResult(googleResult);
                 return reps;
             }

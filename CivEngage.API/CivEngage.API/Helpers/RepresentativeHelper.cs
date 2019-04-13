@@ -1,27 +1,23 @@
 ﻿using CivEngage.API.Models;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using RestSharp;
 using System.Collections.Generic;
-using System;
 using Newtonsoft.Json.Linq;
 
 namespace CivEngage.API.Helpers
 {
     public class RepresentativeHelper
     {
-        private IConfiguration _config;
-
-        public RepresentativeHelper(IConfiguration config)
+        public RepresentativeHelper()
         {
-            _config = config;
+
         }
 
-        public string CallGoogleApi(string address)
+        public string CallGoogleApi(string address, string googleUri)
         {
             var queystring = GetQueryString(address);
-            var client = new RestClient(_config["GoogleUri"] + queystring);
+            var client = new RestClient(googleUri + queystring);
 
             var request = new RestRequest(Method.GET);
             request.OnBeforeDeserialization = resp => { resp.ContentType = "application/json"; };
