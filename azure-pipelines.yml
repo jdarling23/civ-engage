@@ -13,12 +13,8 @@ variables:
   buildConfiguration: 'Release'
 
 steps:
-- task: DotNetCoreInstaller@0
-  displayName: 'Install .Net Core 2.1.1'
-  inputs:
-    version: '2.1.1'
 - script: dotnet restore
-  displayName: 'Restore .Net Core'
+  displayName: 'Restore'
 - task: DotNetCoreCLI@2
   displayName: Build
   inputs:
