@@ -30,3 +30,12 @@ steps:
     command: test
     projects: '**/*Test*/*.csproj'
     arguments: '--configuration $(buildConfiguration)'
+- task: AzureRmWebAppDeployment@4
+  displayName: Deploy to Azure
+  inputs:
+    ConnectedServiceName: 'Visual Studio Enterprise – MPN(e0313a52-5c21-42d6-b971-7b0ba3a74b46)'
+    WebAppKind: 'apiApp'
+    WebAppName: 'CivEngage-API'
+    DeployToSlotOrASEFlag: true
+    ResourceGroupName: 'civ-engage'
+    SlotName: 'Dev'
