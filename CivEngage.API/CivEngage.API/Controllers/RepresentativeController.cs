@@ -10,7 +10,7 @@ using Microsoft.Extensions.Configuration;
 namespace CivEngage.API.Controllers
 {
     [Route("api/[controller]")]
-    public class RepresentativeController : Controller
+    public class RepresentativeController : ControllerBase
     {
         private RepresentativeHelper _helper;
         private IConfiguration _config;
